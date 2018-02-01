@@ -77,10 +77,10 @@ class RegisterController extends Controller
         $bind_data = ['url' => route('email.verify',['token'=> $user->confirmation_token]),
                       'name'=> $user->name
         ];
-        $template = new SendCloudTemplate('test_template_active', $bind_data);
+        $template = new SendCloudTemplate('test_papravel', $bind_data);
 
         Mail::raw($template, function ($message) use($user){
-            $message->from('3060866223@qq.com', 'ZHIHU');
+            $message->from('langtianyao1102@gmail.com', 'ZHIHU');
 
             $message->to($user->email);
         });
