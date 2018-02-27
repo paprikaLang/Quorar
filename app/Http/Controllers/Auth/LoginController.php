@@ -65,9 +65,13 @@ class LoginController extends Controller
     }
     protected function attemptLogin(Request $request)
     {
+        //当邮箱验证了才会发送欢迎回来
         $credentials = array_merge($this->credentials($request),['is_active'=>1]);
         return $this->guard()->attempt(
            $credentials, $request->has('remember')
         );
+    }
+    public function index() {
+        return view('auth.passwords.login');
     }
 }
