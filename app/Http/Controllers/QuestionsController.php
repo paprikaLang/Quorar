@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreQuestionRequest;
 use App\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,8 +35,21 @@ class QuestionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreQuestionRequest $request)
     {
+        //依赖注入一个封装好的Request
+//        $rules = [
+//            'title'=>'required|min:6|max:196',
+//            'body'=> 'required|min:26',
+//        ];
+//        $messages = [
+//            'title.required'=>'标题不能为空',
+//            'title.min' =>'标题不少于6个字符',
+//            'body.required'=>'问题不能为空',
+//            'body.min' =>'问题不少于26个字符',
+//        ];
+        //根据规则验证问题的格式正确
+//        $this->validate($request,$rules,$messages);
         $data = [
             'title'=>$request->get('title'),
             'body'=>$request->get('body'),
