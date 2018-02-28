@@ -20,17 +20,18 @@
                                 @endif
                             </div>
                             <div class="form-group"{{ $errors->has('title') ? 'has-error' : '' }}>
-                                <script id="container" name="body" type="text/plain">
+                                <label for="title">描述</label>
+                                <!-- 编辑器容器 -->
+                                <script id="container" name="body"  type="text/plain" style="height: 230px;">
                                     {{--避免转义成HTML格式--}}
                                     {!! old('body')!!}
                                 </script>
                                 @if ($errors->has('body'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('body') }}</strong>
+                                       <strong>{{ $errors->first('body') }}</strong>
                                     </span>
                                 @endif
                             </div>
-
                             <button class="btn btn-success pull-right" type="submit">提交问题</button>
                         </form>
 
@@ -41,12 +42,19 @@
     </div>
     <!-- 实例化编辑器 -->
     <script type="text/javascript">
-        var ue = UE.getEditor('container');
+        var ue = UE.getEditor('container',{
+            toolbars: [
+                ['bold', 'italic', 'underline', 'strikethrough', 'blockquote', 'insertunorderedlist', 'insertorderedlist', 'justifyleft','justifycenter', 'justifyright',  'link', 'insertimage', 'fullscreen']
+            ],
+            elementPathEnabled: false,
+            enableContextMenu: false,
+            autoClearEmptyNode:true,
+            wordCount:false,
+            imagePopup:false,
+            autotypeset:{ indent: true,imageBlockLine: 'center' }
+        });
         ue.ready(function() {
             ue.execCommand('serverparam', '_token', '{{ csrf_token() }}'); // 设置 CSRF token.
         });
     </script>
-
-    <!-- 编辑器容器 -->
-
 @endsection

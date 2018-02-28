@@ -11,7 +11,7 @@
 
 return [
     // 存储引擎: config/filesystem.php 中 disks， public 或 qiniu
-    'disk' => 'public',
+    'disk' => 'local',
     'route' => [
         'name' => '/ueditor/server',
         'options' => [
@@ -20,7 +20,7 @@ return [
     ],
 
     // 是否使用 md5 格式文件名
-    'hash_filename' => true,
+//    'hash_filename' => true,
 
     // 上传 配置
     'upload' => [

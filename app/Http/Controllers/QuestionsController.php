@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class QuestionsController extends Controller
 {
+    public function __construct()
+    {
+        //有了中间件保护,create路由会重定向到登录页面
+        $this->middleware('auth')->except(['index','show']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,6 +32,7 @@ class QuestionsController extends Controller
      */
     public function create()
     {
+//        dd(public_path());
         return view('questions.create');
     }
 
@@ -37,7 +44,7 @@ class QuestionsController extends Controller
      */
     public function store(StoreQuestionRequest $request)
     {
-        //依赖注入一个封装好的Request
+        //依赖注入一个封装好的Request,等价于$this->validate($request,$rules,$messages);
 //        $rules = [
 //            'title'=>'required|min:6|max:196',
 //            'body'=> 'required|min:26',
@@ -69,6 +76,7 @@ class QuestionsController extends Controller
     public function show($id)
     {
         $question = Question::find($id);
+//        dd($question->attributesToArray()['body']);
         return view('questions.show',compact('question'));
     }
 
