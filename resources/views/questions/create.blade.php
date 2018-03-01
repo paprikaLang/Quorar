@@ -19,10 +19,17 @@
                                     </span>
                                 @endif
                             </div>
+                            <div class="form-group">
+                                <select class="js-example-basic-single form-control" name="state">
+                                    <option value="AL">Alabama</option>
+                                    ...
+                                    <option value="WY">Wyoming</option>
+                                </select>
+                            </div>
                             <div class="form-group"{{ $errors->has('title') ? 'has-error' : '' }}>
                                 <label for="title">描述</label>
                                 <!-- 编辑器容器 -->
-                                <script id="container" name="body"  type="text/plain" style="height: 230px;">
+                                <script id="container" name="body"  type="text/plain" >
                                     {{--避免转义成HTML格式--}}
                                     {!! old('body')!!}
                                 </script>
@@ -40,8 +47,10 @@
             </div>
         </div>
     </div>
-    <!-- 实例化编辑器 -->
+    @section('js')
+                                    <!-- 实例化编辑器 -->
     <script type="text/javascript">
+
         var ue = UE.getEditor('container',{
             toolbars: [
                 ['bold', 'italic', 'underline', 'strikethrough', 'blockquote', 'insertunorderedlist', 'insertorderedlist', 'justifyleft','justifycenter', 'justifyright',  'link', 'insertimage', 'fullscreen']
@@ -56,5 +65,9 @@
         ue.ready(function() {
             ue.execCommand('serverparam', '_token', '{{ csrf_token() }}'); // 设置 CSRF token.
         });
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2();
+        })
     </script>
+    @endsection
 @endsection
