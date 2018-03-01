@@ -29,6 +29,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function topics() {
+        return $this->belongsToMany(Topic::class)->withTimestamps();
+    }
+
     public function sendPasswordResetNotification($token)
     {
         $bind_data = ['url' => url('/password/reset',$token)];
