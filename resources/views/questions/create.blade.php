@@ -20,10 +20,7 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <select class="js-example-basic-single form-control" name="state">
-                                    <option value="AL">Alabama</option>
-                                    ...
-                                    <option value="WY">Wyoming</option>
+                                <select name="topics[]" class="js-example-placeholder-multiple form-control" multiple="multiple" >
                                 </select>
                             </div>
                             <div class="form-group"{{ $errors->has('title') ? 'has-error' : '' }}>
@@ -66,7 +63,54 @@
             ue.execCommand('serverparam', '_token', '{{ csrf_token() }}'); // 设置 CSRF token.
         });
         $(document).ready(function () {
-            $('.js-example-basic-single').select2();
+//            $('.js-example-basic-single').select2();
+            function formatTopic (topic) {
+                return "<li class='select2-result-repository clearfix'>" +
+                "<li class='select2-result-repository__meta'>" +
+                "<li class='select2-result-repository__title'>" +
+                topic.name ? topic.name : "Laravel"   +
+                    "</li></li></li>";
+            }
+            function formatTopicSelection (topic) {
+                return topic.name || topic.text;
+            }
+
+            $(".js-example-placeholder-multiple").select2({
+                tags: true,
+                ajax: {
+                    url: "/api/topics",
+                    dataType: 'json',
+                    delay: 250,
+                    data: function (params) {
+                        return {
+                            q: params.term // search term
+//                            page: params.page
+                        };
+                    },
+                    processResults: function (data, params) {
+                        // parse the results into the format expected by Select2
+                        // since we are using custom formatting functions we do not need to
+                        // alter the remote JSON data, except to indicate that infinite
+                        // scrolling can be used
+//                        params.page = params.page || 1;
+
+                        return {
+                            results: data
+//                            pagination: {
+//                                more: (params.page * 30) < data.total_count
+//                            }
+                        };
+                    },
+                    cache: true
+                },
+                placeholder: '选择相关话题',
+                maximumSelectionLength: 2,
+//                minimumInputLength: 1,
+                allowClear: true,
+                escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+                templateResult: formatTopic,
+                templateSelection: formatTopicSelection
+            });
         })
     </script>
     @endsection
