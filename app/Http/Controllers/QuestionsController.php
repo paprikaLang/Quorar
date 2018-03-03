@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuestionRequest;
-use App\Question;
-use App\Topic;
+use App\Repositories\QuestionRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class QuestionsController extends Controller
 {
-    public function __construct()
+    protected $questionRepository;
+    public function __construct(QuestionRepository $questionRepository)
     {
+        $this->questionRepository = $questionRepository;
         //有了中间件保护,create路由会重定向到登录页面
         $this->middleware('auth')->except(['index','show']);
     }
@@ -59,14 +60,14 @@ class QuestionsController extends Controller
         //根据规则验证问题的格式正确
 //        $this->validate($request,$rules,$messages);
 
-        $topics = $this->normalizeTopic($request->get('topics'));
+        $topics = $this->questionRepository->normalizeTopic($request->get('topics'));
 //        dd($topics);
         $data = [
             'title'=>$request->get('title'),
             'body'=>$request->get('body'),
             'user_id'=>Auth::id()
         ];
-        $question = Question::create($data);
+        $question = $this->questionRepository->create($data);
         //填入对应表中
         $question->topics()->attach($topics);
         //route名字在web.api里定义
@@ -82,8 +83,9 @@ class QuestionsController extends Controller
     public function show($id)
     {
         //将topics字段加入到question模型中
-        $question_ins = new Question();
-        $question =$question_ins->where('id',$id)->with('topics')->first();
+//        $question_ins = new Question();
+//        $question =$question_ins->where('id',$id)->with('topics')->first();
+        $question = $this->questionRepository->byIdWithTopics($id);
 //        dd($question->attributesToArray()['body']);
         return view('questions.show',compact('question'));
     }
@@ -121,15 +123,5 @@ class QuestionsController extends Controller
     {
         //
     }
-    public function normalizeTopic(array $topics) {
-        return  collect($topics)->map(function ($topic){
-           if (is_numeric($topic)){
-               Topic::find($topic)->increment('questions_count');
-               return (int)$topic;
-           }
-           $transTopic = Topic::create(['name'=>$topic,'questions_count'=>1]);
-//           dd($transTopic);
-           return $transTopic->id;
-        })->toArray();
-    }
+
 }
