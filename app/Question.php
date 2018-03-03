@@ -8,5 +8,8 @@ class Question extends Model
 {
     //MassAssignmentException报错
     protected $fillable = ['title','body','user_id'];
+    public function topics() {
+        return $this->belongsToMany(Topic::class)->withTimestamps();
+    }
 
 }

@@ -65,7 +65,7 @@
         $(document).ready(function () {
 //            $('.js-example-basic-single').select2();
             function formatTopic (topic) {
-                return "<li class='select2-result-repository clearfix'>" +
+                return "<li class='select2-result-repository '>" +
                 "<li class='select2-result-repository__meta'>" +
                 "<li class='select2-result-repository__title'>" +
                 topic.name ? topic.name : "Laravel"   +
@@ -105,8 +105,8 @@
                 },
                 placeholder: '选择相关话题',
                 maximumSelectionLength: 2,
-//                minimumInputLength: 1,
-                allowClear: true,
+                minimumInputLength: 2,
+//                allowClear: true,
                 escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
                 templateResult: formatTopic,
                 templateSelection: formatTopicSelection
