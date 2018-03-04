@@ -11,6 +11,9 @@ use App\Question;
 use App\Topic;
 class QuestionRepository
 {
+    public function byId($id) {
+        return Question::find($id);
+    }
     public function byIdWithTopics($id) {
         $question_ins = new Question();
         return $question_ins->where('id',$id)->with('topics')->first();
