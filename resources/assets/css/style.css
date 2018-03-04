@@ -1,4 +1,4 @@
-.panel-body img {
+.panel-body.content img {
     width: 100%;
 }
 a.topic {
@@ -8,8 +8,9 @@ a.topic {
     text-decoration: none;
     margin: 0 5px 5px 0;
     display: inline-block;
-    white-space: nowrap;
+    white-space: normal;
     cursor: pointer;
+    float: right;
 }
 
 a.topic:hover {

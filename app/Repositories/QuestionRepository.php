@@ -18,9 +18,9 @@ class QuestionRepository
     public function byId($id) {
         return Question::find($id);
     }
-    public function byIdWithTopics($id) {
+    public function byIdWithTopicsAndAnswers($id) {
         $question_ins = new Question();
-        return $question_ins->where('id',$id)->with('topics')->first();
+        return $question_ins->where('id',$id)->with(['topics','answers'])->first();
     }
     public function create(array $attributes) {
         return Question::create($attributes);

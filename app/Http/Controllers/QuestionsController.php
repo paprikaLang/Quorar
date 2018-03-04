@@ -86,7 +86,7 @@ class QuestionsController extends Controller
         //将topics字段加入到question模型中
 //        $question_ins = new Question();
 //        $question =$question_ins->where('id',$id)->with('topics')->first();
-        $question = $this->questionRepository->byIdWithTopics($id);
+        $question = $this->questionRepository->byIdWithTopicsAndAnswers($id);
 //        dd($question->attributesToArray()['body']);
         return view('questions.show',compact('question'));
     }
@@ -113,7 +113,7 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreQuestionRequest $request, $id)
     {
         $question = $this->questionRepository->byId($id);
         $topics = $this->questionRepository->normalizeTopic($request->get('topics'));
