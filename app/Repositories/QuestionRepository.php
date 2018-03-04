@@ -11,6 +11,10 @@ use App\Question;
 use App\Topic;
 class QuestionRepository
 {
+    //获取所有问题,利用scope-query限定的范围过滤一部分问题
+    public function getQuestionsFeed() {
+        return Question::published()->latest('updated_at')->with('user')->get();
+    }
     public function byId($id) {
         return Question::find($id);
     }

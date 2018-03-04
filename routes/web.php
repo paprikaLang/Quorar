@@ -11,9 +11,7 @@
 |
 */
 //路由页
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'QuestionsController@index');
 
 
 Auth::routes();
