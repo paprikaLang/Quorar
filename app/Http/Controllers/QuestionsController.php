@@ -26,6 +26,7 @@ class QuestionsController extends Controller
     {
         $questions = $this->questionRepository->getQuestionsFeed();
         return view('questions.index',compact('questions'));
+
     }
 
     /**
