@@ -51,6 +51,7 @@
                                 </div>
                             </div>
                         @endforeach
+                        @if(Auth::check())
                         <form action="/questions/{{$question->id}}/answer" method="post">
                             {!! csrf_field() !!}
                             <div class="form-group"{{ $errors->has('body') ? 'has-error' : '' }}>
@@ -67,7 +68,9 @@
                             </div>
                             <button class="btn btn-success pull-right" type="submit">提交答案</button>
                         </form>
-
+                        @else
+                            <a href="{{url('login')}}" class="btn btn-block btn-success">登录提交答案</a>
+                        @endif
                     </div>
                 </div>
             </div>

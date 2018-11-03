@@ -14,7 +14,7 @@ class AnswersController extends Controller
     public function __construct(AnswerRepository $repository){
         $this->answerRepository = $repository;
     }
-
+//post 'questions/{question}/answer','AnswersController@store' 传递过来的question
     public function store(StoreAnswerRequest $request,$question) {
        $answer = $this->answerRepository->create([
            'question_id'=>$question,
