@@ -36,3 +36,7 @@ a.topic:hover {
     color: #3097D1;
     text-decoration: none;
 }
+
+.followers-panel {
+    text-align: center;
+}
