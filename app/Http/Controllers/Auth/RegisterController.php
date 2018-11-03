@@ -65,7 +65,7 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'avatar' =>'/images/avatars/default.png',
+            'avatar' =>'/images/avatars/default.jpg',
             'confirmation_token'=>str_random(40),
             'password' => bcrypt($data['password']),
         ]);
@@ -77,11 +77,11 @@ class RegisterController extends Controller
         $bind_data = ['url' => route('email.verify',['token'=> $user->confirmation_token]),
                       'name'=> $user->name
         ];
-        $template = new SendCloudTemplate('test_zhihu', $bind_data);
+        $template = new SendCloudTemplate('quorar', $bind_data);
 
         Mail::raw($template, function ($message) use($user){
 
-            $message->from('langtianyao1102@gmail.com', 'ZHIHU');
+            $message->from('langtianyao1102@gmail.com', 'Quorar');
 
             $message->to($user->email);
         });
