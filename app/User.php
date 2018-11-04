@@ -7,6 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Mail;
 use Naux\Mail\SendCloudTemplate;
+use Facades\App\Follow;
 
 class User extends Authenticatable
 {
@@ -34,6 +35,14 @@ class User extends Authenticatable
     }
     public function answers() {
         return $this->hasMany(Answer::class);
+    }
+
+    public function follows($question) {
+        $new = Follow::create([
+            'question_id' => $question,
+            'user_id' => $this->id
+        ]);
+        return $new;
     }
 
     public function sendPasswordResetNotification($token)

@@ -4,7 +4,7 @@
     @include('vendor.ueditor.assets')
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-1">
+            <div class=" col-md-7 col-md-offset-1 col-sm-10">
                 <div class="panel panel-default">
                     <div class="panel-heading" >
                         {{$question->title}}
@@ -28,21 +28,20 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading followers-panel">
-                        <h2>{{$question->followers_count}}</h2>
+                        <h3>{{$question->followers_count}}</h3>
                         <span>关注者</span>
                     </div>
                     <div class="panel-body">
-                        <a href="/question/{{$question->id}}/follow" class="btn btn-default">
-                            关注该问题
-                        </a>
-                        <a href="#editor" class="btn btn-primary">撰写答案</a>
+                        <a href="/question/{{$question->id}}/follow" class="btn btn-primary">关注问题</a>
+                        <a href="#editor" class="btn btn-default">写回答</a>
+                        <a href="#editor" class="btn btn-default">邀请回答</a>
                     </div>
                 </div>
             </div>
-            <div class="col-md-8 col-md-offset-1">
+            <div class="col-md-7 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading" >
                         {{$question->answers_count}}个答案
