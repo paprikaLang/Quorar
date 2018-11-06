@@ -43028,6 +43028,15 @@ __webpack_require__("./resources/assets/js/bootstrap.js");
 
 window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
 
+// require('vue-resource');
+//
+// const api_token = document.head.querySelector('meta[name="api-token"]');
+//
+// Vue.http.interceptors.push((request,next) => {
+//     request.headers.set('Authorization',api_token.content);
+//     console.log(`what's a ${api_token.content}`);
+//     next();
+// });
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -43055,10 +43064,10 @@ window._ = __webpack_require__("./node_modules/lodash/lodash.js");
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__("./node_modules/jquery/dist/jquery.js");
+    window.$ = window.jQuery = __webpack_require__("./node_modules/jquery/dist/jquery.js");
 
-  __webpack_require__("./node_modules/bootstrap-sass/assets/javascripts/bootstrap.js");
-  __webpack_require__("./resources/assets/js/select2.min.js");
+    __webpack_require__("./node_modules/bootstrap-sass/assets/javascripts/bootstrap.js");
+    __webpack_require__("./resources/assets/js/select2.min.js");
 } catch (e) {}
 
 /**
@@ -43080,11 +43089,18 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
+var api_token = document.head.querySelector('meta[name="api-token"]');
+if (api_token) {
+    window.axios.defaults.headers.common['Authorization'] = api_token.content;
+    console.log('what\'s a ' + api_token.content);
+} else {
+    console.error('api_token not found');
+}
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

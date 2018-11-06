@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::middleware('api')->get('/topics', function (Request $request) {
+Route::middleware('auth:api')->get('/topics', function (Request $request) {
 
     $topics = \App\Topic::select(['id','name'])->
         where('name','like','%'.$request->query('q').'%')
@@ -24,7 +24,7 @@ Route::middleware('api')->get('/topics', function (Request $request) {
     return $topics;
 });
 
-Route::middleware('api')->post('/question/follower', function (Request $request) {
+Route::middleware('auth:api')->post('/question/follower', function (Request $request) {
 //    return response()->json(['followed' => false]);
 //    return response()->json(['question' => request('question')]);
     $followed = \App\Follow::where('question_id', $request->get('question'))
@@ -36,7 +36,7 @@ Route::middleware('api')->post('/question/follower', function (Request $request)
     return response()->json(['followed'=>false]);
 });
 
-Route::middleware('api')->post('/question/follow', function (Request $request) {
+Route::middleware('auth:api')->post('/question/follow', function (Request $request) {
 
     $followed = \App\Follow::where('question_id', $request->get('question'))
         ->where('user_id',$request->get('user'))

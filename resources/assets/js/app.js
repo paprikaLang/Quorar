@@ -9,6 +9,16 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+
+// require('vue-resource');
+//
+// const api_token = document.head.querySelector('meta[name="api-token"]');
+//
+// Vue.http.interceptors.push((request,next) => {
+//     request.headers.set('Authorization',api_token.content);
+//     console.log(`what's a ${api_token.content}`);
+//     next();
+// });
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
