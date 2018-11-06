@@ -1,10 +1,10 @@
 @extends('layouts.app')
-
+@include('vendor.ueditor.assets')
 @section('content')
-    @include('vendor.ueditor.assets')
+
     <div class="container">
         <div class="row">
-            <div class=" col-md-7 col-md-offset-1 col-sm-10">
+            <div class="col-md-7 col-md-offset-1">
                 <div class="panel panel-default">
                     <div class="panel-heading" >
                         {{$question->title}}
@@ -34,17 +34,18 @@
                         <h3>{{$question->followers_count}}</h3>
                         <span>关注者</span>
                     </div>
-                    <div class="panel-body">
-                        <a href="/question/{{$question->id}}/follow" class="btn btn-primary {{Auth::user()->followed($question->id) ? 'btn-success' : ''}}">
-                            {{Auth::user()->followed($question->id) ? '已关注' : '关注问题'}}</a>
-                          <a href="#editor" class="btn btn-default">写回答</a>
-                          <a href="#editor" class="btn btn-default">邀请回答</a>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-md-7 col-md-offset-1">
-                  <div class="panel panel-default">
-                      <div class="panel-heading" >
+                    <div id="follow" class="panel-body">
+                        {{--<a href="/question/{{$question->id}}/follow" class="btn btn-primary {{Auth::user()->followed($question->id) ? 'btn-success' : ''}}">--}}
+                            {{--{{Auth::user()->followed($question->id) ? '已关注' : '关注问题'}}</a>--}}
+                        <question-follow-button question="{{$question->id}}" user="{{Auth::id()}}"></question-follow-button>
+                        <a href="#editor" class="btn btn-default">写回答</a>
+                        <a href="#editor" class="btn btn-default">邀请回答</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 col-md-offset-1">
+                <div class="panel panel-default">
+                    <div class="panel-heading" >
                           {{$question->answers_count}}个答案
                     </div>
                     <div class="panel-body">
@@ -69,9 +70,8 @@
                         <form action="/questions/{{$question->id}}/answer" method="post">
                             {!! csrf_field() !!}
                             <div class="form-group"{{ $errors->has('body') ? 'has-error' : '' }}>
-                                <!-- 编辑器容器 -->
+                                <!-- 编辑器容器 避免转义成HTML格式 -->
                                 <script id="container" name="body"  type="text/plain" >
-                                    {{--避免转义成HTML格式--}}
                                     {!! old('body')!!}
                                 </script>
                                 @if ($errors->has('body'))
@@ -90,11 +90,12 @@
             </div>
         </div>
     </div>
+@endsection
 @section('js')
     <!-- 实例化编辑器 -->
     <script type="text/javascript">
 
-        var ue = UE.getEditor('container',{
+        const ue = UE.getEditor('container',{
             toolbars: [
                 ['bold', 'italic', 'underline', 'strikethrough', 'blockquote', 'insertunorderedlist', 'insertorderedlist', 'justifyleft','justifycenter', 'justifyright',  'link', 'insertimage', 'fullscreen']
             ],
@@ -109,5 +110,4 @@
             ue.execCommand('serverparam', '_token', '{{ csrf_token() }}'); // 设置 CSRF token.
         });
     </script>
-@endsection
 @endsection

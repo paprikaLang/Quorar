@@ -82,9 +82,9 @@
         </div>
         @yield('content')
     </div>
-
     <!-- Scripts -->
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.3.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="{{ mix('js/app.js') }}"></script>
     @yield('js')
     <script>
