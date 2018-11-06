@@ -21,5 +21,9 @@ class Question extends Model
     public function scopePublished($query) {
         return $query->where('is_hidden','F');
     }
+    //user_question的user和question可以多对多
+    public function followers() {
+        return $this->belongsToMany(User::class,'user_question')->withTimestamps();
+    }
 
 }

@@ -35,16 +35,17 @@
                         <span>关注者</span>
                     </div>
                     <div class="panel-body">
-                        <a href="/question/{{$question->id}}/follow" class="btn btn-primary">关注问题</a>
-                        <a href="#editor" class="btn btn-default">写回答</a>
-                        <a href="#editor" class="btn btn-default">邀请回答</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-7 col-md-offset-1">
-                <div class="panel panel-default">
-                    <div class="panel-heading" >
-                        {{$question->answers_count}}个答案
+                        <a href="/question/{{$question->id}}/follow" class="btn btn-primary {{Auth::user()->followed($question->id) ? 'btn-success' : ''}}">
+                            {{Auth::user()->followed($question->id) ? '已关注' : '关注问题'}}</a>
+                          <a href="#editor" class="btn btn-default">写回答</a>
+                          <a href="#editor" class="btn btn-default">邀请回答</a>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-7 col-md-offset-1">
+                  <div class="panel panel-default">
+                      <div class="panel-heading" >
+                          {{$question->answers_count}}个答案
                     </div>
                     <div class="panel-body">
                         @foreach($question->answers as $answer)
