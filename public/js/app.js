@@ -1674,6 +1674,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.post('/api/question/follow', { 'question': this.question, 'user': this.user }).then(function (response) {
                 _this2.followed = response.data.followed;
+                console.log(response.data.count);
             });
         }
     }
@@ -32121,7 +32122,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("button", {
-    staticClass: "btn btn-primary",
+    staticClass: "btn btn-primary pull-left",
     class: { "btn-success": _vm.followed },
     domProps: { textContent: _vm._s(_vm.text) },
     on: { click: _vm.follow }
@@ -43097,7 +43098,7 @@ if (token) {
 var api_token = document.head.querySelector('meta[name="api-token"]');
 if (api_token) {
     window.axios.defaults.headers.common['Authorization'] = api_token.content;
-    console.log('what\'s a ' + api_token.content);
+    // console.log(`what's a ${api_token.content}`);
 } else {
     console.error('api_token not found');
 }

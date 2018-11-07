@@ -1,6 +1,6 @@
 <template>
     <button
-            class="btn btn-primary"
+            class="btn btn-primary pull-left"
             v-bind:class="{'btn-success': followed}"
             v-text="text"
             v-on:click="follow"
@@ -31,6 +31,7 @@
             follow() {
                 axios.post('/api/question/follow',{'question':this.question,'user':this.user}).then(response => {
                     this.followed = response.data.followed;
+                    console.log(response.data.count);
                 })
             }
         }

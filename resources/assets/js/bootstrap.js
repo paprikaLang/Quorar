@@ -41,7 +41,7 @@ if (token) {
 const api_token = document.head.querySelector('meta[name="api-token"]');
 if (api_token) {
     window.axios.defaults.headers.common['Authorization'] = api_token.content;
-    console.log(`what's a ${api_token.content}`);
+    // console.log(`what's a ${api_token.content}`);
 } else {
     console.error('api_token not found');
 }

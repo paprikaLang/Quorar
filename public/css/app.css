@@ -9052,3 +9052,32 @@ a.topic:hover {
   text-align: center;
 }
 
+.question-follow {
+  text-align: center;
+}
+
+.user-statics,
+.user-actions {
+  margin-top: 15px;
+}
+
+.user-statics {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.statics-item {
+  padding: 2px 2px;
+}
+
+.statics-text {
+  font-size: 12px;
+}
+
+#app {
+  font-size: 14px;
+}
+

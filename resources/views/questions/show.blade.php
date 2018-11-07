@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-7 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading" >
+                    <div class="panel-heading" style="font-size: 18px; font-weight: bolder;">
                         {{$question->title}}
                         @foreach($question->topics as $topic)
                             <a class="topic" href="/topic/{{$topic->id}}">{{$topic->name}}</a>
@@ -28,18 +28,18 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="panel panel-default">
                     <div class="panel-heading followers-panel">
                         <h3>{{$question->followers_count}}</h3>
                         <span>关注者</span>
                     </div>
-                    <div id="follow" class="panel-body">
+                    <div class="panel-body" style="font-size: 12px;">
                         {{--<a href="/question/{{$question->id}}/follow" class="btn btn-primary {{Auth::user()->followed($question->id) ? 'btn-success' : ''}}">--}}
                             {{--{{Auth::user()->followed($question->id) ? '已关注' : '关注问题'}}</a>--}}
                         <question-follow-button question="{{$question->id}}" user="{{Auth::id()}}"></question-follow-button>
-                        <a href="#editor" class="btn btn-default">写回答</a>
-                        <a href="#editor" class="btn btn-default">邀请回答</a>
+                        <a href="#editor" class="btn btn-warning pull-right">写回答</a>
+                        {{--<a href="#editor" class="btn btn-default pull-right">邀请回答</a>--}}
                     </div>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">
-                                        <a href="/users/{{$answer->user->name}}">
+                                        <a href="/users/{{$answer->user->name}}" style="text-decoration: none; color: black;">
                                             {{$answer->user->name}}
                                         </a>
                                     </h4>
@@ -85,6 +85,45 @@
                         @else
                             <a href="{{url('login')}}" class="btn btn-block btn-success">登录提交答案</a>
                         @endif
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading question-follow">
+                        <h5>关于作者</h5>
+                    </div>
+                    <div class="panel-body">
+                       <div class="media">
+                               <a href="#">
+                                   <img width="54px;" src="{{$question->user->avatar}}" alt="{{$question->user->name}}">
+                               </a>
+                           <div class="media-body">
+                               <h4 style="margin-left: 20px;">{{$question->user->name}}</h4>
+                           <div class="media">
+                               <div class="media-body user-statics">
+                               <div class="statics-item text-center">
+                                   <div class="statics-text">问题</div>
+                                   <div class="statics-count">{{$question->user->questions_count}}</div>
+                               </div>
+                               <div class="statics-item text-center">
+                                   <div class="statics-text">回答</div>
+                                   <div class="statics-count">{{$question->user->answers_count}}</div>
+                               </div>
+                               <div class="statics-item text-center">
+                                   <div class="statics-text">关注者</div>
+                                   <div class="statics-count">{{$question->user->followers_count}}</div>
+                               </div>
+                               </div>
+                           </div>
+                           </div>
+                       </div>
+                        <div class="media">
+                            <div class="media-body">
+                                <question-follow-button question="{{$question->id}}"></question-follow-button>
+                                <a href="#editor" class="btn btn-warning pull-right">发送私信</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
