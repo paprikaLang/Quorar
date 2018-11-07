@@ -22,7 +22,7 @@
 
                 <div>
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right" style="font-size: 14px;">
+                    <ul class="nav navbar-nav navbar-right" style="font-size: 14px; margin-right: -100px;">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -33,21 +33,19 @@
                                    <strong> {{ Auth::user()->name }}</strong>
                                 </a>
 
-                                <ul class="dropdown-menu" style="margin-right: 18px;">
+                                <ul class="dropdown-menu" style="margin-right: 10px;">
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
+                                            Logout  </a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
                                 </ul>
                             </li>
-                            <div style="margin-right: -100px;"><a href="/">
+                            <div><a href="/">
                                 <img width="45px;" src="{{Auth::user()->avatar}}" >
                             </a>
                             </div>
