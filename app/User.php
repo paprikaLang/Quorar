@@ -57,6 +57,12 @@ class User extends Authenticatable
     public function followers(){
         return $this->belongsToMany(self::class,'followers','follower_id','followed_id')->withTimestamps();
     }
+    public function followeds(){
+        return $this->belongsToMany(self::class,'followers','followed_id','follower_id')->withTimestamps();
+    }
+    public function followThisUser($user) {
+        return $this->followers()->toggle($user);
+    }
 
 
     public function sendPasswordResetNotification($token)
