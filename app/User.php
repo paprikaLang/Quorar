@@ -63,17 +63,12 @@ class User extends Authenticatable
     public function followThisUser($user) {
         return $this->followers()->toggle($user);
     }
-
-
     public function sendPasswordResetNotification($token)
     {
         $bind_data = ['url' => url('/password/reset',$token)];
         $template = new SendCloudTemplate('test_reset', $bind_data);
-
         Mail::raw($template, function ($message){
-
-            $message->from('langtianyao1102@gmail.com', 'ZHIHU');
-
+            $message->from('langtianyao1102@gmail.com', 'Quorar');
             $message->to($this->email);
         });
 
