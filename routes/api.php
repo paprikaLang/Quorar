@@ -6,6 +6,8 @@ use Facades\App\Topic;
 use Facades\App\Follow;
 use Illuminate\Support\Facades\Auth;
 use Facades\App\Question;
+use Facades\App\User;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -68,3 +70,5 @@ Route::post('/user/follow','FollowersController@follow');
 
 Route::get('answer/{id}/votes/users','VotesController@users');
 Route::post('answer/vote','VotesController@vote');
+Route::get('/user/send/{id}', 'FollowersController@sendMessage');
+Route::post('/message/store','MessagesController@send');

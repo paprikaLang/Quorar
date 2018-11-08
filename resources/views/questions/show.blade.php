@@ -65,7 +65,7 @@
                                         </a>
                                     </h4>
                                     <div style="display:flex; flex-direction: row; margin: 3px 0;">
-                                        <a href="#"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+                                        <span class="glyphicon glyphicon-thumbs-up"></span>
                                         <user-vote-button answer="{{$answer->id}}" count="{{$answer->votes_count}}"></user-vote-button>
                                     </div>
 
@@ -132,7 +132,7 @@
                         <div class="media">
                             <div class="media-body">
                                 <user-follow-button user="{{$question->user_id}}"></user-follow-button>
-                                <a href="#editor" class="btn btn-warning pull-right">发送私信</a>
+                                <message-send-button user="{{$question->user_id}}"></message-send-button>
                             </div>
                         </div>
                     </div>

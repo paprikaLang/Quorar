@@ -37,4 +37,9 @@ class FollowersController extends Controller
         return response()->json(['followed' => false]);
 
     }
+    public function sendMessage($id) {
+        $user = $this->user->byId($id);
+        $name = $user->name;
+        return response()->json(['name'=> $name]);
+    }
 }

@@ -72,6 +72,9 @@ class User extends Authenticatable
     public function hasVotedFor($answer){
         return !! $this->votes()->where('answer_id', $answer)->count();
     }
+    public function messages() {
+        return $this->hasMany(Message::class,'to_user_id');
+    }
     public function sendPasswordResetNotification($token)
     {
         $bind_data = ['url' => url('/password/reset',$token)];
