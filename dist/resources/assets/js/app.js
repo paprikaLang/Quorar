@@ -1,3 +1,4 @@
+'use strict';
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -19,6 +20,7 @@ window.eventBus = new Vue();
 Vue.component('question-follow-button', require('./components/QuestionFollowButton.vue'));
 Vue.component('user-follow-button', require('./components/UserFollowButton.vue'));
 Vue.component('user-vote-button', require('./components/UserVoteButton.vue'));
-const app = new Vue({
-    el: '#app'
+var app = new Vue({
+  el: '#app'
 });
+//# sourceMappingURL=app.js.map

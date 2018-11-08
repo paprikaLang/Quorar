@@ -51,17 +51,28 @@
                     <div class="panel-body">
                         @foreach($question->answers as $answer)
                             <div class="media">
-                                <div class="media-left">
+                                <div class="media-left" style="display: flex; flex-direction: column;">
                                     <a href="">
-                                        <img width="30" src="{{$answer->user->avatar}}" alt="{{$answer->user->name}}">
+                                        <img width="40" src="{{$answer->user->avatar}}" alt="{{$answer->user->name}}">
                                     </a>
+
+
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">
-                                        <a href="/users/{{$answer->user->name}}" style="text-decoration: none; color: black;">
+                                        <a href="/users/{{$answer->user->name}}" style="text-decoration: none; color: darkgray;">
                                             {{$answer->user->name}}
                                         </a>
                                     </h4>
+                                    <div style="display:flex; flex-direction: row; margin: 3px 0;">
+                                        <a href="#"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+                                        <user-vote-button answer="{{$answer->id}}" count="{{$answer->votes_count}}"></user-vote-button>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="media-body" style="font-size: 16px; margin:0 10px;">
                                     {!!$answer->body!!}
                                 </div>
                             </div>

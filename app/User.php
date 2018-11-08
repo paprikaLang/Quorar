@@ -63,6 +63,15 @@ class User extends Authenticatable
     public function followThisUser($user) {
         return $this->followers()->toggle($user);
     }
+    public function votes() {
+        return $this->belongsToMany(Answer::class,'votes')->withTimestamps(); //user_answer: laravel的便利.
+    }
+    public function voteFor($answer) {
+        return $this->votes()->toggle($answer);
+    }
+    public function hasVotedFor($answer){
+        return !! $this->votes()->where('answer_id', $answer)->count();
+    }
     public function sendPasswordResetNotification($token)
     {
         $bind_data = ['url' => url('/password/reset',$token)];
