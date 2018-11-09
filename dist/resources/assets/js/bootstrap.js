@@ -1,3 +1,4 @@
+'use strict';
 
 window._ = require('lodash');
 
@@ -30,7 +31,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * a simple convenience so we don't have to attach every token manually.
  */
 
-const token = document.head.querySelector('meta[name="csrf-token"]');
+var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
     window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
@@ -38,7 +39,7 @@ if (token) {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
-const api_token = document.head.querySelector('meta[name="api-token"]');
+var api_token = document.head.querySelector('meta[name="api-token"]');
 if (api_token) {
     window.axios.defaults.headers.common['Authorization'] = api_token.content;
 } else {
@@ -58,3 +59,4 @@ if (api_token) {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+//# sourceMappingURL=bootstrap.js.map

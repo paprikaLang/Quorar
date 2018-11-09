@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button v-on:click="presentModal" type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#exampleModal" data-whatever="@paprikaLang">发送私信</button>
+        <button v-on:click="presentModal" type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#exampleModal" data-whatever="@poster">发送私信</button>
 
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -57,6 +57,8 @@
                     this.status = response.data.status;
                     setTimeout(function () {
                         $('#exampleModal').modal('hide');
+                        $('body').removeClass('modal-open');
+                        $('.modal-backdrop').remove();
                     },2000);
 
                 })

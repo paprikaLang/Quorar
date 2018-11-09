@@ -72,3 +72,19 @@ Route::get('answer/{id}/votes/users','VotesController@users');
 Route::post('answer/vote','VotesController@vote');
 Route::get('/user/send/{id}', 'FollowersController@sendMessage');
 Route::post('/message/store','MessagesController@send');
+
+Route::get('answer/{id}/comments','CommentsController@answer');
+Route::get('question/{id}/comments','CommentsController@question');
+
+Route::post('comment','CommentsController@store');
+
+
+
+
+
+
+
+
+
+
+

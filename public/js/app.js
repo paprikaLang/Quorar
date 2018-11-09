@@ -1631,6 +1631,107 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Comments.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['type', 'model', 'count'],
+    data: function data() {
+        return {
+            body: '',
+            mycount: this.count,
+            comments: [],
+            newComment: {
+                user: {
+                    name: Quorar.name,
+                    avatar: Quorar.avatar
+                },
+                body: ''
+            }
+        };
+    },
+    mounted: function mounted() {
+        this.getComments();
+    },
+
+    computed: {
+        dialogs: function dialogs() {
+            return 'comments-dialog-' + this.type + this.model;
+        },
+        dialogJquery: function dialogJquery() {
+            return '#' + this.dialogs;
+        },
+        text: function text() {
+            return this.mycount;
+        }
+    },
+    methods: {
+        sendcomment: function sendcomment() {
+            var _this = this;
+
+            axios.post('/api/comment', { 'type': this.type, 'model': this.model, 'body': this.body }).then(function (response) {
+                _this.newComment.body = response.data.body;
+                console.log(Quorar);
+                _this.comments.push(_this.newComment);
+                _this.body = '';
+                _this.mycount++;
+            });
+        },
+        presentCommentsModal: function presentCommentsModal() {
+            this.getComments();
+            $(this.dialogJquery).on('shown.bs.modal', function () {});
+        },
+        getComments: function getComments() {
+            var _this2 = this;
+
+            axios.get('/api/' + this.type + '/' + this.model + '/comments').then(function (response) {
+                _this2.comments = response.data;
+            });
+        }
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/MessageSendButton.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1700,6 +1801,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this2.status = response.data.status;
                 setTimeout(function () {
                     $('#exampleModal').modal('hide');
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
                 }, 2000);
             });
         },
@@ -32303,6 +32406,166 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-19fc3d2b\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Comments.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "button",
+      {
+        staticClass: "btn",
+        staticStyle: { "margin-top": "-6px" },
+        attrs: {
+          type: "button",
+          "data-toggle": "modal",
+          "data-target": _vm.dialogJquery
+        },
+        on: { click: _vm.presentCommentsModal }
+      },
+      [_vm._v(_vm._s(_vm.text))]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: _vm.dialogs,
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c(
+                  "ul",
+                  { staticClass: "list-unstyled" },
+                  _vm._l(_vm.comments, function(comment) {
+                    return _c("li", { staticClass: "media" }, [
+                      _c("img", {
+                        staticClass: "mr-3",
+                        attrs: {
+                          width: "24px;",
+                          src: comment.user.avatar,
+                          alt: "Generic placeholder image"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "media-body" }, [
+                        _c("h5", { staticClass: "mt-0 mb-1" }, [
+                          _vm._v(_vm._s(comment.user.name))
+                        ]),
+                        _vm._v(
+                          "\n                                   " +
+                            _vm._s(comment.body) +
+                            "\n                               "
+                        )
+                      ])
+                    ])
+                  })
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.body,
+                      expression: "body"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.body },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.body = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("取消")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.sendcomment }
+                  },
+                  [_vm._v("评论")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("评论列表")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-19fc3d2b", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-2435c29a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/MessageSendButton.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32319,7 +32582,7 @@ var render = function() {
           type: "button",
           "data-toggle": "modal",
           "data-target": "#exampleModal",
-          "data-whatever": "@paprikaLang"
+          "data-whatever": "@poster"
         },
         on: { click: _vm.presentModal }
       },
@@ -32537,7 +32800,7 @@ var render = function() {
   return _c(
     "button",
     {
-      staticClass: "btn",
+      staticClass: "btn btn-default",
       class: { "btn-primary": _vm.voted },
       staticStyle: {
         height: "15px",
@@ -43463,6 +43726,7 @@ Vue.component('question-follow-button', __webpack_require__("./resources/assets/
 Vue.component('user-follow-button', __webpack_require__("./resources/assets/js/components/UserFollowButton.vue"));
 Vue.component('user-vote-button', __webpack_require__("./resources/assets/js/components/UserVoteButton.vue"));
 Vue.component('message-send-button', __webpack_require__("./resources/assets/js/components/MessageSendButton.vue"));
+Vue.component('comments', __webpack_require__("./resources/assets/js/components/Comments.vue"));
 
 var app = new Vue({
   el: '#app'
@@ -43516,7 +43780,6 @@ if (token) {
 var api_token = document.head.querySelector('meta[name="api-token"]');
 if (api_token) {
     window.axios.defaults.headers.common['Authorization'] = api_token.content;
-    // console.log(`what's a ${api_token.content}`);
 } else {
     console.error('api_token not found');
 }
@@ -43534,6 +43797,54 @@ if (api_token) {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/Comments.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Comments.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-19fc3d2b\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Comments.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Comments.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-19fc3d2b", Component.options)
+  } else {
+    hotAPI.reload("data-v-19fc3d2b", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
 
 /***/ }),
 

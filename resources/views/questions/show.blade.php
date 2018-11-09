@@ -26,6 +26,10 @@
                             </form>
                         @endif
                     </div>
+                    <div style="display: flex; flex-direction: row; margin: 0 20px;">
+                        <span class="glyphicon glyphicon-comment"></span>
+                        <comments type="question" model="{{$question->id}}" count="{{$question->comments()->count()}}"></comments>
+                    </div>
                 </div>
             </div>
             <div class="col-md-3">
@@ -52,11 +56,9 @@
                         @foreach($question->answers as $answer)
                             <div class="media">
                                 <div class="media-left" style="display: flex; flex-direction: column;">
-                                    <a href="">
+                                    <a href="#">
                                         <img width="40" src="{{$answer->user->avatar}}" alt="{{$answer->user->name}}">
                                     </a>
-
-
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">
@@ -64,21 +66,25 @@
                                             {{$answer->user->name}}
                                         </a>
                                     </h4>
-                                    <div style="display:flex; flex-direction: row; margin: 3px 0;">
-                                        <span class="glyphicon glyphicon-thumbs-up"></span>
-                                        <user-vote-button answer="{{$answer->id}}" count="{{$answer->votes_count}}"></user-vote-button>
-                                    </div>
-
                                 </div>
                             </div>
                             <div class="media">
-                                <div class="media-body" style="font-size: 16px; margin:0 10px;">
+                                <div class="media-body">
                                     {!!$answer->body!!}
                                 </div>
                             </div>
+                            <div class="media">
+                                <div class="media-body" style="display: flex; flex-direction: row; margin-bottom: 10px;">
+                                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                                    <user-vote-button answer="{{$answer->id}}" count="{{$answer->votes_count}}"></user-vote-button>
+                                    <span class="glyphicon glyphicon-comment" style="margin-left: 16px;"></span>
+                                    <comments type="answer" model="{{$answer->id}}" count="{{$answer->comments()->count()}}"></comments>
+                                </div>
+                            </div>
+                            <hr>
                         @endforeach
                         @if(Auth::check())
-                        <form action="/questions/{{$question->id}}/answer" method="post">
+                        <form action="/questions/{{$question->id}}/answer" method="post" style="margin-top: 20px;">
                             {!! csrf_field() !!}
                             <div class="form-group"{{ $errors->has('body') ? 'has-error' : '' }}>
                                 <!-- 编辑器容器 避免转义成HTML格式 -->
@@ -139,6 +145,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 @endsection
 @section('js')
