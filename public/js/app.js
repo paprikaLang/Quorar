@@ -32417,7 +32417,7 @@ var render = function() {
     _c(
       "button",
       {
-        staticClass: "btn",
+        staticClass: "btn btn-default",
         staticStyle: { "margin-top": "-6px" },
         attrs: {
           type: "button",
@@ -32465,9 +32465,14 @@ var render = function() {
                       }),
                       _vm._v(" "),
                       _c("div", { staticClass: "media-body" }, [
-                        _c("h5", { staticClass: "mt-0 mb-1" }, [
-                          _vm._v(_vm._s(comment.user.name))
-                        ]),
+                        _c(
+                          "h5",
+                          {
+                            staticClass: "mt-0 mb-1",
+                            staticStyle: { color: "darkgray" }
+                          },
+                          [_vm._v(_vm._s(comment.user.name))]
+                        ),
                         _vm._v(
                           "\n                                   " +
                             _vm._s(comment.body) +
@@ -32801,12 +32806,11 @@ var render = function() {
     "button",
     {
       staticClass: "btn btn-default",
-      class: { "btn-primary": _vm.voted },
+      class: { "btn-voted": _vm.voted },
       staticStyle: {
         height: "15px",
         "line-height": "6px",
-        "margin-left": "1px",
-        border: "none"
+        "margin-left": "1px"
       },
       on: { click: _vm.vote }
     },

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button v-on:click="presentCommentsModal" type="button" class="btn" data-toggle="modal" :data-target="dialogJquery" style="margin-top: -6px;" >{{text}}</button>
+        <button v-on:click="presentCommentsModal" type="button" class="btn btn-default" data-toggle="modal" :data-target="dialogJquery" style="margin-top: -6px;" >{{text}}</button>
         <div class="modal fade" :id="dialogs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -16,7 +16,7 @@
                                <li class="media" v-for="comment in comments">
                                    <img width="24px;" class="mr-3" :src="comment.user.avatar" alt="Generic placeholder image">
                                    <div class="media-body">
-                                       <h5 class="mt-0 mb-1">{{comment.user.name}}</h5>
+                                       <h5 class="mt-0 mb-1" style="color: darkgray;">{{comment.user.name}}</h5>
                                        {{comment.body}}
                                    </div>
                                </li>

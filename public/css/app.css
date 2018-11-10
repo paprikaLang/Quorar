@@ -9081,3 +9081,23 @@ a.topic:hover {
   font-size: 14px;
 }
 
+.btn-default {
+  color: #777 !important;
+}
+
+.btn-voted {
+  color: #ff0000 !important;
+}
+
+.btn-default:focus,
+.btn-default.focus,
+.btn-default:active,
+.btn-default.active,
+.btn-default:hover {
+  background: #FFFFFF !important;
+  border: none !important;
+  border-color: #FFFFFF !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
