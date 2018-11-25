@@ -41,14 +41,7 @@
             return {
                 body:'',
                 mycount: this.count,
-                comments: [],
-                newComment: {
-                    user: {
-                        name: Quorar.name,
-                        avatar: Quorar.avatar
-                    },
-                    body:''
-                }
+                comments: []
             }
         },
         mounted() {
@@ -68,9 +61,15 @@
         methods: {
             sendcomment() {
                 axios.post('/api/comment',{'type':this.type,'model':this.model,'body':this.body}).then(response => {
-                    this.newComment.body = response.data.body;
-                    console.log(Quorar);
-                    this.comments.push(this.newComment);
+
+                    const comment = {
+                        user: {
+                            name: Quorar.name,
+                            avatar: Quorar.avatar
+                        },
+                        body:response.data.body
+                    };
+                    this.comments.push(comment);
                     this.body = '';
                     this.mycount ++ ;
                 })
