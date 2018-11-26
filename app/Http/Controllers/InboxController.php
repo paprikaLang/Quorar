@@ -31,6 +31,7 @@ class InboxController extends Controller
 
 //        $messages = Message::where('from_user_id', $id)->where('to_user_id', Auth::user()->id)->get();
         $messages = Message::where('dialog_id',$dialogId)->latest()->get(); //latest reverse 都有倒序的作用
+        $messages->markAsRead();
         return view('inbox.show',compact('messages','dialogId'));
     }
     public function store($dialogId){
