@@ -7,7 +7,6 @@
                     <div class="panel-heading">私信列表</div>
 
                     <div class="panel-body">
-                        {{--当前ID:6 -> {1:[{6,1},{6,1}],6:[{1,6},{1,6},{7,6}]}, key {1,6}--}}
                         @foreach($messages as $key => $messageGroup)
                             <div class="media">
                             <div class="media-left">
@@ -22,11 +21,12 @@
                             </div>
                             <div class="media-body">
                                 <h4 class="media-heading">
-                                    @if(Auth::id() == $key)
-                                        to
-                                    @else
-                                        from
-                                    @endif
+                                    {{--unique('dialog_id')省略了from1 to6 和 from6 to1的区分--}}
+                                    {{--@if(Auth::id() == $key)--}}
+                                        {{--to--}}
+                                    {{--@else--}}
+                                        {{--from--}}
+                                    {{--@endif--}}
                                     <a href="#" style="font-size: 18px; color: #ff0000" >
                                         @if(Auth::id() == $key)
                                             {{ $messageGroup->first()->toUser->name }}
@@ -36,16 +36,9 @@
                                     </a>
                                 </h4>
                                 <p style="font-size: 12px;">
-                                    @if(Auth::id() == $key)
-                                        <a href="/inbox/to/{{$messageGroup->first()->toUser->id }}" style="color: #888a85;" >
-                                            {{ $messageGroup->last()->body }}
-                                        </a>
-                                    @else
-                                        <a href="/inbox/from/{{$messageGroup->first()->fromUser->id }}" style="color: #888a85;">
-                                            {{ $messageGroup->last()->body }}
-                                        </a>
-                                    @endif
-
+                                    <a href="/inbox/{{$messageGroup->last()->dialog_id }}" style="color: #888a85;">
+                                        {{ $messageGroup->last()->body }}  <span class="pull-right">最新 {{$messageGroup->last()->created_at->format('m-d H:i')}}</span>
+                                    </a>
                                 </p>
                             </div>
                             </div>

@@ -23,16 +23,26 @@ class InboxController extends Controller
 //            dd($ms->first);
         $messages = Message::where('to_user_id',Auth::user()->id)
             ->orWhere('from_user_id',Auth::user()->id)
-            ->with(['fromUser','toUser'])->get();
-        return view('inbox.index', ['messages' => $messages->groupBy('from_user_id')]);
+            ->with(['fromUser','toUser'])->latest()->get();
+//        return $messages->unique('dialog_id')->groupBy('from_user_id');
+        return view('inbox.index', ['messages' => $messages->unique('dialog_id')->groupBy('from_user_id')]);
     }
-    public function showFromMsg($id) {
+    public function show($dialogId) {
 
-        $messages = Message::where('from_user_id', $id)->where('to_user_id', Auth::user()->id)->get();
-        return $messages;
+//        $messages = Message::where('from_user_id', $id)->where('to_user_id', Auth::user()->id)->get();
+        $messages = Message::where('dialog_id',$dialogId)->latest()->get(); //latest reverse 都有倒序的作用
+        return view('inbox.show',compact('messages','dialogId'));
     }
-    public function showToMsg($id){
-        $messages = Message::where('to_user_id', $id )->where('from_user_id', Auth::user()->id)->get();
-        return $messages;
+    public function store($dialogId){
+        $message = Message::where('dialog_id', $dialogId)->first();
+        $toUserId = $message->from_user_id === Auth::user()->id ? $message->to_user_id : $message->from_user_id;
+        Message::create([
+            'from_user_id' => Auth::user()->id,
+            'to_user_id' => $toUserId,
+            'body' => request('body'),
+            'dialog_id' => $dialogId
+        ]);
+        return back();
     }
+
 }

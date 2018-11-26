@@ -23,7 +23,8 @@ class MessagesController extends Controller
         $msg =  $this->message->create([
             'to_user_id' => request('user'),
             'from_user_id' => Auth::guard('api')->user()->id,
-            'body' => request('body')
+            'body' => request('body'),
+            'dialog_id'=>(Auth::guard('api')->user()->id+request('user')).(0).(Auth::guard('api')->user()->id * request('user'))
         ]);
         if ($msg) {
             return response()->json(['status'=> true]);
