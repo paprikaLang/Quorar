@@ -75,3 +75,6 @@ a.topic:hover {
     border-color: #FFFFFF!important;
     box-shadow: none!important;
 }
+.unread {
+    background: rgba(255, 235, 170, 0.5);
+}

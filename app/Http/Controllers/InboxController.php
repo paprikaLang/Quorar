@@ -23,7 +23,11 @@ class InboxController extends Controller
 //            dd($ms->first);
         $messages = Message::where('to_user_id',Auth::user()->id)
             ->orWhere('from_user_id',Auth::user()->id)
-            ->with(['fromUser','toUser'])->latest()->get();
+            ->with(['fromUser' => function($query){
+                return $query->select(['id','name','avatar']);
+            },'toUser'=> function($query){
+                return $query->select(['id','name','avatar']);
+            }])->latest()->get();  // $query 返回只想暴露的user信息
 //        return $messages->unique('dialog_id')->groupBy('from_user_id');
         return view('inbox.index', ['messages' => $messages->unique('dialog_id')->groupBy('from_user_id')]);
     }

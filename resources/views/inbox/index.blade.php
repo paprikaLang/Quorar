@@ -19,7 +19,7 @@
 
                                 </a>
                             </div>
-                            <div class="media-body">
+                            <div class="media-body {{ $messageGroup->first()->unreadClass() ? 'unread' : '' }}" style="padding: 2px 10px;">
                                 <h4 class="media-heading">
                                     {{--unique('dialog_id')省略了from1 to6 和 from6 to1的区分--}}
                                     {{--@if(Auth::id() == $key)--}}
