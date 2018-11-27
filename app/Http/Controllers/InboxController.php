@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\NewMessageNotification;
 use Facades\App\Message;
 use Illuminate\Http\Request;
 use Auth;
@@ -41,12 +42,13 @@ class InboxController extends Controller
     public function store($dialogId){
         $message = Message::where('dialog_id', $dialogId)->first();
         $toUserId = $message->from_user_id === Auth::user()->id ? $message->to_user_id : $message->from_user_id;
-        Message::create([
+        $newMsg = Message::create([
             'from_user_id' => Auth::user()->id,
             'to_user_id' => $toUserId,
             'body' => request('body'),
             'dialog_id' => $dialogId
         ]);
+        $newMsg->toUser->notify(new NewMessageNotification($newMsg));
         return back();
     }
 
