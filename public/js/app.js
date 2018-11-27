@@ -12340,8 +12340,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             show: false,
             params: {
-                token: '123456798',
-                name: 'avatar'
+                _token: Laravel.csrfToken,
+                name: 'img'
             },
             headers: {
                 smail: '*_~'
@@ -12375,10 +12375,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
          * [param] jsonData  server api return data, already json encode
          * [param] field
          */
-        cropUploadSuccess: function cropUploadSuccess(jsonData, field) {
+        cropUploadSuccess: function cropUploadSuccess(response, field) {
             console.log('-------- upload success --------');
-            console.log(jsonData);
+            console.log(response);
             console.log('field: ' + field);
+            this.imgDataUrl = response.url;
+            this.toggleShow();
         },
 
         /**
@@ -44149,7 +44151,7 @@ var render = function() {
           field: "img",
           width: 300,
           height: 300,
-          url: "/upload",
+          url: "/avatar",
           params: _vm.params,
           headers: _vm.headers,
           "img-format": "png"

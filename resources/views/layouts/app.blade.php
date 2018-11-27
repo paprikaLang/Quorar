@@ -10,11 +10,14 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script>
+        window.Laravel =  <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>;
         @if(Auth::check())
             window.Quorar = {
                 name: "{{Auth::user()->name}}",
                 avatar:"{{Auth::user()->avatar}}"
-            }
+            };
         @endif
     </script>
 </head>
