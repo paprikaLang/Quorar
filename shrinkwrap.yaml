@@ -1,3 +1,6 @@
+dependencies:
+  babel-polyfill: 6.26.0
+  vue-image-crop-upload: 2.5.0
 devDependencies:
   gulp: 3.9.1
   vue-resource: 1.5.1
@@ -115,6 +118,23 @@ packages:
     resolution:
       integrity: sha1-bZUX654DDSQ2ZmZR6GvZ9vE1M8k=
       tarball: 'http://registry.npm.taobao.org/atob/download/atob-2.1.2.tgz'
+  /babel-polyfill/6.26.0:
+    dependencies:
+      babel-runtime: 6.26.0
+      core-js: 2.5.7
+      regenerator-runtime: 0.10.5
+    dev: false
+    resolution:
+      integrity: sha1-N5k3q8Z9eJWXCtxiHyhM2WbPIVM=
+      tarball: 'http://registry.npm.taobao.org/babel-polyfill/download/babel-polyfill-6.26.0.tgz'
+  /babel-runtime/6.26.0:
+    dependencies:
+      core-js: 2.5.7
+      regenerator-runtime: 0.11.1
+    dev: false
+    resolution:
+      integrity: sha1-llxwWGaOgrVde/4E/yM3vItWR/4=
+      tarball: 'http://registry.npm.taobao.org/babel-runtime/download/babel-runtime-6.26.0.tgz'
   /balanced-match/1.0.0:
     dev: true
     resolution:
@@ -280,6 +300,11 @@ packages:
     resolution:
       integrity: sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
       tarball: 'http://registry.npm.taobao.org/copy-descriptor/download/copy-descriptor-0.1.1.tgz'
+  /core-js/2.5.7:
+    dev: false
+    resolution:
+      integrity: sha1-+XJgj/DOrWi4QaFqky0LGDeRgU4=
+      tarball: 'http://registry.npm.taobao.org/core-js/download/core-js-2.5.7.tgz'
   /core-util-is/1.0.2:
     dev: true
     resolution:
@@ -1698,6 +1723,16 @@ packages:
     resolution:
       integrity: sha1-hSBLVNuoLVdC4oyWdW70OvUOM4Q=
       tarball: 'http://registry.npm.taobao.org/rechoir/download/rechoir-0.6.2.tgz'
+  /regenerator-runtime/0.10.5:
+    dev: false
+    resolution:
+      integrity: sha1-M2w+/BIgrc7dosn6tntaeVWjNlg=
+      tarball: 'http://registry.npm.taobao.org/regenerator-runtime/download/regenerator-runtime-0.10.5.tgz'
+  /regenerator-runtime/0.11.1:
+    dev: false
+    resolution:
+      integrity: sha1-vgWtf5v30i4Fb5cmzuUBf78Z4uk=
+      tarball: 'http://registry.npm.taobao.org/regenerator-runtime/download/regenerator-runtime-0.11.1.tgz'
   /regex-not/1.0.2:
     dependencies:
       extend-shallow: 3.0.2
@@ -2155,6 +2190,13 @@ packages:
     resolution:
       integrity: sha1-sEVbOPxeDPMNQyUTLkYZcMIJHN4=
       tarball: 'http://registry.npm.taobao.org/vinyl/download/vinyl-0.5.3.tgz'
+  /vue-image-crop-upload/2.5.0:
+    dependencies:
+      babel-runtime: 6.26.0
+    dev: false
+    resolution:
+      integrity: sha1-Lc9JnltJRLxQd/wwtfJNXpd/MTw=
+      tarball: 'http://registry.npm.taobao.org/vue-image-crop-upload/download/vue-image-crop-upload-2.5.0.tgz'
   /vue-resource/1.5.1:
     dependencies:
       got: 8.3.2
@@ -2186,5 +2228,7 @@ registry: 'https://registry.npm.taobao.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
+  babel-polyfill: ^6.26.0
   gulp: ^3.9.1
+  vue-image-crop-upload: ^2.5.0
   vue-resource: ^1.5.1
