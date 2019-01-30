@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreQuestionRequest;
 use App\Repositories\QuestionRepository;
+use App\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,8 +37,8 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-//        dd(public_path());
-        return view('questions.create');
+        $allTopics = Topic::all()->pluck('name')->all();
+        return view('questions.create', compact('allTopics'));
     }
 
     /**
@@ -48,22 +49,7 @@ class QuestionsController extends Controller
      */
     public function store(StoreQuestionRequest $request)
     {
-        //依赖注入一个封装好的Request,等价于$this->validate($request,$rules,$messages);
-//        $rules = [
-//            'title'=>'required|min:6|max:196',
-//            'body'=> 'required|min:26',
-//        ];
-//        $messages = [
-//            'title.required'=>'标题不能为空',
-//            'title.min' =>'标题不少于6个字符',
-//            'body.required'=>'问题不能为空',
-//            'body.min' =>'问题不少于26个字符',
-//        ];
-        //根据规则验证问题的格式正确
-//        $this->validate($request,$rules,$messages);
-
         $topics = $this->questionRepository->normalizeTopic($request->get('topics'));
-//        dd($topics);
         $data = [
             'title'=>$request->get('title'),
             'body'=>$request->get('body'),
@@ -72,10 +58,10 @@ class QuestionsController extends Controller
         $question = $this->questionRepository->create($data);
         //填入对应表中
         $question->topics()->attach($topics);
+
         //route名字在web.api里定义
         return redirect()->route('question.show',[$question->id]);
     }
-
     /**
      * Display the specified resource.
      *
@@ -101,8 +87,9 @@ class QuestionsController extends Controller
     public function edit($id)
     {
         $question = $this->questionRepository->byId($id);
+        $allTopics = Topic::all()->pluck('name')->all();
         if (Auth::user()->owns($question)){
-            return view('questions.edit',compact('question'));
+            return view('questions.edit',['question' => $question,'allTopics' => $allTopics]);
         }
         return back();
     }

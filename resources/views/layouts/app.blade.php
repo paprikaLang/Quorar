@@ -9,8 +9,9 @@
     <title>{{ config('app.name', 'Quorar') }}</title>
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    @yield('css')
     <script>
-        window.Laravel =  <?php echo json_encode([
+        window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
         ]); ?>;
         @if(Auth::check())
@@ -55,9 +56,12 @@
                                         </form>
                                     </li>
                                     <li>
+                                        <a href="/questions/create">
+                                            发起问题  </a>
+                                    </li>
+                                    <li>
                                         <a href="/avatar">
                                             修改头像  </a>
-
                                     </li>
                                 </ul>
                             </li>
@@ -86,6 +90,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="{{ mix('js/app.js') }}"></script>
     @yield('js')
+
     <script>
         $('#flash-overlay-modal').modal();
     </script>

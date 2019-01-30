@@ -23,6 +23,7 @@ Route::post('/avatar','UsersController@changeAvatar');
 Route::resource('questions','QuestionsController',['names' => [
     'create' => 'question.create',
     'show' => 'question.show',
+    'store' => 'question.store'
 ]]);
 Route::post('questions/{question}/answer','AnswersController@store');
 Route::get('question/{question}/follow','QuestionFollowController@follow');

@@ -27,9 +27,10 @@ class QuestionRepository
     }
     public function normalizeTopic(array $topics) {
         return  collect($topics)->map(function ($topic){
-            if (is_numeric($topic)){
-                Topic::find($topic)->increment('questions_count');
-                return (int)$topic;
+            $allTopics = Topic::all()->pluck('name')->all();
+            if (in_array($topic, $allTopics)){
+                Topic::where('name', $topic)->increment('questions_count');
+                return Topic::where('name', $topic)->first()->id;
             }
             $transTopic = Topic::create(['name'=>$topic,'questions_count'=>1]);
             return $transTopic->id;

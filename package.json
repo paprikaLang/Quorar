@@ -17,6 +17,8 @@
     "jquery": "^3.2",
     "laravel-mix": "^2.0",
     "lodash": "^4.17.4",
+    "node-sass": "^4.11.0",
+    "selectize": "^0.12.6",
     "vue": "^2.5.7",
     "vue-resource": "^1.5.1"
   },

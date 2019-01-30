@@ -54,9 +54,10 @@
           dialogJquery() {
               return '#'+ this.dialogs
           },
-            text() {
-              return this.mycount
-            }
+          text() {
+              return this.mycount;
+          }
+
         },
         methods: {
             sendcomment() {

@@ -9,7 +9,7 @@
                     <div class="panel-heading" style="font-size: 18px; font-weight: bolder;">
                         {{$question->title}}
                         @foreach($question->topics as $topic)
-                            <a class="topic" href="/topic/{{$topic->id}}">{{$topic->name}}</a>
+                            <a class="topic" href="#">{{$topic->name}}</a>
                         @endforeach
                     </div>
                     <div class="panel-body content">
@@ -36,7 +36,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading followers-panel">
                         <h3>{{$question->followers_count}}</h3>
-                        <span>关注者</span>
+                        <span>关注问题</span>
                     </div>
                     <div class="panel-body" style="font-size: 12px;">
                         {{--<a href="/question/{{$question->id}}/follow" class="btn btn-primary {{Auth::user()->followed($question->id) ? 'btn-success' : ''}}">--}}

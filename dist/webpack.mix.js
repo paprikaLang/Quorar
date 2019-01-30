@@ -1,3 +1,5 @@
+'use strict';
+
 var mix = require('laravel-mix');
 
 /*
@@ -11,16 +13,9 @@ var mix = require('laravel-mix');
  |
  */
 
+mix.js('resources/assets/js/app.js', 'public/js').sass('resources/assets/sass/app.scss', 'public/css').version();
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css')
-    .version();
+mix.combine(['node_modules/selectize/dist/css/selectize.css', 'node_modules/selectize/dist/css/selectize.bootstrap3.css'], 'public/css/selectize.default.css');
 
-mix.combine([
-    'node_modules/selectize/dist/css/selectize.css',
-    'node_modules/selectize/dist/css/selectize.bootstrap3.css'
-], 'public/css/selectize.default.css');
-
-mix.copy('node_modules/selectize/dist/js/standalone/selectize.min.js',
-    'public/js/selectize.min.js');
-
+mix.copy('node_modules/selectize/dist/js/standalone/selectize.min.js', 'public/js/selectize.min.js');
+//# sourceMappingURL=webpack.mix.js.map
