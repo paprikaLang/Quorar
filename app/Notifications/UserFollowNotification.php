@@ -37,15 +37,13 @@ class UserFollowNotification extends Notification
         return ['database',SendcloudChannel::class];
     }
     public function toSendcloud($notifiable){
-        $bind_data = ['url' => 'https://quora.test/','name' => Auth::guard('api')->user()->name];
+        $bind_data = ['url' => 'https://quora.paprikalang.tk','name' => Auth::guard('api')->user()->name];
         $template = new SendCloudTemplate('test_follow', $bind_data);
         Mail::raw($template, function ($message) use ($notifiable){
             $message->from('langtianyao1102@gmail.com', 'Quorar');
             $message->to($notifiable->email);
         });
-
     }
-
     public function toDatabase($notifiable){
         return [
             'name' => Auth::guard('api')->user()->name,
