@@ -12440,6 +12440,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['type', 'model', 'count'],
@@ -12462,7 +12463,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return '#' + this.dialogs;
         },
         text: function text() {
-            return this.mycount;
+            return this.mycount + "  ";
         }
     },
     methods: {
@@ -43279,20 +43280,22 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "button",
-      {
-        staticClass: "btn btn-default",
-        staticStyle: { "margin-top": "-6px" },
-        attrs: {
-          type: "button",
-          "data-toggle": "modal",
-          "data-target": _vm.dialogJquery
+    _c("div", { staticClass: "text-center" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-default ",
+          staticStyle: { "margin-top": "-6px" },
+          attrs: {
+            type: "button",
+            "data-toggle": "modal",
+            "data-target": _vm.dialogJquery
+          },
+          on: { click: _vm.presentCommentsModal }
         },
-        on: { click: _vm.presentCommentsModal }
-      },
-      [_vm._v(_vm._s(_vm.text))]
-    ),
+        [_vm._v(_vm._s(_vm.text) + "条评论")]
+      )
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -44115,9 +44118,11 @@ var render = function() {
       staticClass: "btn btn-default",
       class: { "btn-voted": _vm.voted },
       staticStyle: {
-        height: "15px",
-        "line-height": "6px",
-        "margin-left": "1px"
+        height: "18px",
+        width: "30px",
+        "margin-left": "1px",
+        "margin-top": "-6px",
+        "text-align": "left"
       },
       on: { click: _vm.vote }
     },

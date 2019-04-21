@@ -3,7 +3,7 @@
             class="btn btn-default"
             v-bind:class="{'btn-voted': voted}"
             v-on:click="vote"
-            style="height: 15px; line-height:6px; margin-left: 1px;"
+            style="height: 18px; width: 30px; margin-left: 1px; margin-top: -6px; text-align: left;"
     >{{voted_count}}
     </button>
 </template>

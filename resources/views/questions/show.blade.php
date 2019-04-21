@@ -26,7 +26,7 @@
                             </form>
                         @endif
                     </div>
-                    <div style="display: flex; flex-direction: row; margin: 0 20px;">
+                    <div style="display: flex; flex-direction: row; margin: 5px 20px; height: 18px;">
                         <span class="glyphicon glyphicon-comment"></span>
                         <comments type="question" model="{{$question->id}}" count="{{$question->comments()->count()}}"></comments>
                     </div>
@@ -36,7 +36,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading followers-panel">
                         <h3>{{$question->followers_count}}</h3>
-                        <span>关注问题</span>
+                        <span>关注者</span>
                     </div>
                     <div class="panel-body" style="font-size: 12px;">
                         {{--<a href="/question/{{$question->id}}/follow" class="btn btn-primary {{Auth::user()->followed($question->id) ? 'btn-success' : ''}}">--}}
@@ -74,10 +74,10 @@
                                 </div>
                             </div>
                             <div class="media">
-                                <div class="media-body" style="display: flex; flex-direction: row; margin-bottom: 10px;">
+                                <div class="media-body" style="display: flex; flex-direction: row; margin-bottom: 10px; height: 18px;">
                                     <span class="glyphicon glyphicon-thumbs-up"></span>
                                     <user-vote-button answer="{{$answer->id}}" count="{{$answer->votes_count}}"></user-vote-button>
-                                    <span class="glyphicon glyphicon-comment" style="margin-left: 16px;"></span>
+                                    <span class="glyphicon glyphicon-comment"></span>
                                     <comments type="answer" model="{{$answer->id}}" count="{{$answer->comments()->count()}}"></comments>
                                 </div>
                             </div>

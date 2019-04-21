@@ -1,7 +1,9 @@
 <template>
     <div>
-        <button v-on:click="presentCommentsModal" type="button" class="btn btn-default" data-toggle="modal" :data-target="dialogJquery" style="margin-top: -6px;" >{{text}}</button>
-        <div class="modal fade" :id="dialogs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="text-center">
+            <button v-on:click="presentCommentsModal" type="button" class="btn btn-default " data-toggle="modal" :data-target="dialogJquery" style="margin-top: -6px;" >{{text}}条评论</button>
+        </div>
+            <div class="modal fade" :id="dialogs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -11,7 +13,6 @@
                         </button>
                     </div>
                     <div class="modal-body">
-
                            <ul class="list-unstyled">
                                <li class="media" v-for="comment in comments">
                                    <img width="24px;" class="mr-3" :src="comment.user.avatar" alt="Generic placeholder image">
@@ -55,7 +56,7 @@
               return '#'+ this.dialogs
           },
           text() {
-              return this.mycount;
+              return this.mycount + "  ";
           }
 
         },
