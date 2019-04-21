@@ -1,9 +1,9 @@
 <template>
     <button
-            class="btn btn-default"
+            class="btn"
             v-bind:class="{'btn-voted': voted}"
             v-on:click="vote"
-            style="height: 18px; width: 30px; margin-left: 1px; margin-top: -6px; text-align: left;"
+            style="width: 30px; margin-left: 1px; margin-top: -6px; text-align: left;"
     >{{voted_count}}
     </button>
 </template>

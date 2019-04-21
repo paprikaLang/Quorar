@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="text-center">
-            <button v-on:click="presentCommentsModal" type="button" class="btn btn-default " data-toggle="modal" :data-target="dialogJquery" style="margin-top: -6px;" >{{text}}条评论</button>
+            <button v-on:click="presentCommentsModal" type="button" class="btn" data-toggle="modal" :data-target="dialogJquery" style="margin-top: -6px;" >{{text}}条评论</button>
         </div>
             <div class="modal fade" :id="dialogs" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">

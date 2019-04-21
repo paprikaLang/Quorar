@@ -77,7 +77,7 @@
                                 <div class="media-body" style="display: flex; flex-direction: row; margin-bottom: 10px; height: 18px;">
                                     <span class="glyphicon glyphicon-thumbs-up"></span>
                                     <user-vote-button answer="{{$answer->id}}" count="{{$answer->votes_count}}"></user-vote-button>
-                                    <span class="glyphicon glyphicon-comment"></span>
+                                    <span class="glyphicon glyphicon-comment" style=" margin-left: 15px;"></span>
                                     <comments type="answer" model="{{$answer->id}}" count="{{$answer->comments()->count()}}"></comments>
                                 </div>
                             </div>

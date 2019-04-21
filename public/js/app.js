@@ -43284,7 +43284,7 @@ var render = function() {
       _c(
         "button",
         {
-          staticClass: "btn btn-default ",
+          staticClass: "btn",
           staticStyle: { "margin-top": "-6px" },
           attrs: {
             type: "button",
@@ -44115,10 +44115,9 @@ var render = function() {
   return _c(
     "button",
     {
-      staticClass: "btn btn-default",
+      staticClass: "btn",
       class: { "btn-voted": _vm.voted },
       staticStyle: {
-        height: "18px",
         width: "30px",
         "margin-left": "1px",
         "margin-top": "-6px",
