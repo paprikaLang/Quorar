@@ -27,7 +27,7 @@
         <nav class="navbar navbar-default  navbar-expand-md" role="navigation">
             <div class="container-fluid">
                 <div class="navbar-header" style="font-size: 30px;">
-                    <a class="navbar-link" href="{{ url('/') }}" style="text-decoration:none; margin-left: -100px;">
+                    <a class="navbar-link" href="{{ url('/') }}" style="text-decoration:none; margin-left: -80px;">
                         {{ config('app.name', 'Quorar') }}
                     </a>
                 </div>

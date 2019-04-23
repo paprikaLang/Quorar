@@ -62,9 +62,9 @@
                                 </div>
                                 <div class="media-body">
                                     <h4 class="media-heading">
-                                        <a href="/users/{{$answer->user->name}}" style="text-decoration: none; color: darkgray;">
+                                        {{--<a href="/users/{{$answer->user->name}}" style="text-decoration: none; color: darkgray;">--}}
                                             {{$answer->user->name}}
-                                        </a>
+                                        {{--</a>--}}
                                     </h4>
                                 </div>
                             </div>
